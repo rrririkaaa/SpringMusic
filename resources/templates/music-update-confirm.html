@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>楽曲更新確認画面</title>
+    <style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #fce4ec; /* 淡いピンク */
+        text-align: center;
+        margin: 0;
+    }
+
+    h1 {
+        margin: 5px 10px 30px 10px;
+        padding: 1rem 2rem;
+        color: #fff;
+        background: #e91e63;
+        background-image: radial-gradient(circle, #fff 3%, transparent 7%), radial-gradient(circle, #fff 3%, transparent 7%);
+        background-position: 0 0, 25px 25px;
+        background-size: 50px 50px;
+        box-shadow: 6px 6px 0 #f8bbd0;
+    }
+
+    form {
+        display: inline-block;
+        text-align: left;
+        margin: 0 auto;
+        padding: 20px;
+        border-radius: 20px;
+        background-color: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        max-width: 500px; /* 最大横幅を設定 */
+        width: 100%; /* 幅を100%にすることでレスポンシブ対応 */
+    }
+
+    label {
+        display: block;
+        font-size: 1.2rem;
+        margin: 10px 0;
+    }
+
+    input[type="text"] {
+        font-size: 1rem;
+        padding: 10px;
+        border-radius: 10px;
+        border: 1px solid #e91e63;
+        width: calc(100% - 22px); /* 幅を調整して枠内に収める */
+        margin-bottom: 10px;
+    }
+
+    .button-container {
+        text-align: center; /* ボタンを中央に配置 */
+    }
+
+    button {
+        background-color: #e91e63; /* ピンク */
+        color: white;
+        border: 1px solid #e91e63; /* ボーダーを追加 */
+        border-radius: 10px;
+        padding: 10px 20px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s, border-color 0.3s, color 0.3s; /* カーソルに合わせて色が変わるように */
+        margin: 10px;
+    }
+
+    button:hover {
+        background-color: #fce4ec;
+        color: #c2185b;
+        border-color: #c2185b;
+        transform: scale(1); /* サイズが変わらないように */
+        font-weight: bold;
+    }
+
+    </style>
+</head>
+<body>
+
+<h1>楽曲操作システム★更新確認</h1>
+<form th:action="@{/confirmUpdateMusic}" method="post" th:object="${updatedMusic}">
+    <input type="hidden" th:field="*{song_id}" /> <!-- 曲番号を隠しフィールドで送信 -->
+    <label for="song_name">曲名:</label>
+    <input type="text" id="song_name" name="song_name" th:field="*{song_name}" required><br>
+    <label for="singer">歌手名:</label>
+    <input type="text" id="singer" name="singer" th:field="*{singer}" required><br>
+    <div class="button-container">
+        <button type="submit">保存</button>
+    </div>
+</form>
+
+</body>
+</html>

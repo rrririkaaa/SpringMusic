@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>トップ画面</title>
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #fce4ec;
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    h1 {
+        margin: 5px 10px 30px 10px;
+        padding: 1rem 2rem;
+        color: #fff;
+        background: #e91e63;
+        background-image: radial-gradient(circle, #fff 3%, transparent 7%), radial-gradient(circle, #fff 3%, transparent 7%);
+        background-position: 0 0, 25px 25px;
+        background-size: 50px 50px;
+        box-shadow: 6px 6px 0 #f8bbd0;
+        text-align: center;
+    }
+
+    .form-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 50%; /* 下半分を占める */
+        width: 100%;
+    }
+    
+    form {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* 2列に設定 */
+        gap: 20px; /* ボタン間のスペース */
+        align-items: center;
+        max-width: 600px;
+    }
+    
+    input[type="submit"] {
+        background-color: #e91e63;
+        border: none;
+        color: #fff;
+        padding: 30px 45px;
+        border-radius: 8px; 
+        cursor: pointer;
+        font-size: 18px; 
+        transition: background-color 0.3s, transform 0.2s;
+        width: 200px;
+        text-align: center;
+    }
+    
+    input[type="submit"]:hover {
+        background-color: #c2185b; 
+        transform: scale(1.05);
+    }
+</style>
+</head>
+<body>
+
+<h1>楽曲操作システム</h1>
+
+<div class="form-container">
+    <form th:action="@{/menu}" method="post">
+        <input type="submit" value="一覧" name="select">
+        <input type="submit" value="登録" name="insert">
+        <input type="submit" value="更新" name="update">
+        <input type="submit" value="削除" name="delete">
+    </form>
+</div>
+
+</body>
+</html>

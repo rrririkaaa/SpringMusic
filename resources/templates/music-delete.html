@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>楽曲削除画面</title>
+
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #fce4ec;
+        text-align: center;
+        margin: 0;
+    }
+    
+    h1 {
+        margin: 5px 10px 30px 10px;
+        padding: 1rem 2rem;
+        color: #fff;
+        background: #e91e63;
+        background-image: radial-gradient(circle, #fff 3%, transparent 7%), radial-gradient(circle, #fff 3%, transparent 7%);
+        background-position: 0 0, 25px 25px;
+        background-size: 50px 50px;
+        box-shadow: 6px 6px 0 #f8bbd0;
+    }
+        
+    a {
+        color: #e91e63;
+        text-decoration: none;
+        transition: color 0.3s;
+        font-size: 1.2rem; 
+        display: inline-block;
+    }
+    
+    a:hover {
+        color: #c2185b; 
+        font-weight: bold; 
+    }
+    
+    table {
+        width: 85%;
+        margin: 30px auto;
+        border: none;
+    }
+        
+    th, td {
+        padding: 15px;
+        text-align: center;
+        border: 1px solid #e91e63;
+        border-radius: 20px;
+        overflow: hidden;
+    }
+    
+    th {
+        background-color: #e91e63;
+        color: white;
+    }
+     
+    tr {
+        margin-bottom: 20px; 
+    }
+    
+    tr:hover {
+        background-color: #f48fb1;
+        font-weight: bold;
+    }
+
+    td {
+        color: #000;
+    }
+    
+    .button-cell {
+        padding: 0;
+    }
+    
+    button {
+        background-color: #fff;
+        color: #e91e63;
+        border: none;
+        border-radius: 10px;
+        width: 100%;
+        height: 100%;
+        padding: 15px 0;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.3s;
+    }
+    
+    button:hover {
+        background-color: #e91e63;
+        color: #fff; 
+        transform: scale(1.05);
+        font-weight: bold;
+    }
+    
+    /* Larger checkboxes */
+    input[type="checkbox"] {
+        width: 25px; /* チェックボックスの幅 */
+        height: 25px; /* チェックボックスの高さ */
+        transform: scale(1.2); /* チェックボックスのサイズを大きく */
+        cursor: pointer; /* ポインタを表示 */
+    }
+</style>
+
+<script th:inline="javascript">
+    function highlightRow(checkbox) {
+        var row = checkbox.parentNode.parentNode; // 親の親要素である<tr>要素を取得
+        if (checkbox.checked) {
+            row.classList.add('selected-row'); // 選択時にクラスを追加して色を変更
+        } else {
+            row.classList.remove('selected-row'); // 非選択時にクラスを削除して元に戻す
+        }
+    }
+
+    function validateAndSubmit(event) {
+        var checkboxes = document.querySelectorAll('input[name="ids"]:checked');
+        if (checkboxes.length === 0) {
+            event.preventDefault(); // フォームの送信をキャンセル
+            window.location.href = "/function"; // トップ画面にリダイレクト
+        }
+    }
+</script>
+
+</head>
+<body>
+
+<h1>楽曲操作システム★削除</h1>
+<p><a th:href="@{/function}">メニューに戻る</a></p>
+<form th:action="@{/deleteMusic}" method="post" onsubmit="validateAndSubmit(event)">
+    <table border="1">
+        <tr>
+            <th>選択</th>
+            <th>曲番号</th>
+            <th>曲名</th>
+            <th>歌手名</th>
+        </tr>
+        <tr th:each="music : ${list}">
+            <td><input type="checkbox" name="ids" th:value="${music.song_id}" onclick="highlightRow(this)"></td>
+            <td th:text="${music.song_id}"></td>
+            <td th:text="${music.song_name}"></td>
+            <td th:text="${music.singer}"></td>
+        </tr>
+    </table>
+    <br>
+    <button type="submit">削除</button>
+</form>
+
+</body>
+</html>

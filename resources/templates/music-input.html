@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>楽曲登録画面</title>
+<style>
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #fce4ec; /* 淡いピンク */
+    text-align: center;
+    margin: 0;
+}
+
+h1 {
+    margin: 5px 10px 30px 10px;
+    padding: 1rem 2rem;
+    color: #fff;
+    background: #e91e63;
+    background-image: radial-gradient(circle, #fff 3%, transparent 7%), radial-gradient(circle, #fff 3%, transparent 7%);
+    background-position: 0 0, 25px 25px;
+    background-size: 50px 50px;
+    box-shadow: 6px 6px 0 #f8bbd0;
+}
+
+a {
+    color: #e91e63; /* ピンク */
+    text-decoration: none;
+    transition: color 0.3s; /* カーソルに合わせて色が変わるように */
+    font-size: 1.2rem; 
+    display: inline-block; /* 要素の大きさを設定するために必要 */
+    padding: 10px 15px; /* ボタンのようにするためのパディング */
+}
+
+a:hover {
+    color: #c2185b; /* 暗いピンク */
+    font-weight: bold; /* 太字にすることで強調 */
+}
+
+form {
+    display: inline-block;
+    text-align: left;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 500px; /* 最大横幅を設定 */
+    width: 100%; /* 幅を100%にすることでレスポンシブ対応 */
+}
+
+input[type="text"] {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #e91e63;
+    border-radius: 10px;
+    width: calc(100% - 22px); /* 100% - パディング（10px×2）とボーダー（1px×2）を引いた幅 */
+    box-sizing: border-box; /* パディングとボーダーを含めて幅を計算 */
+}
+
+input[type="submit"] {
+    background-color: #e91e63; /* ピンク */
+    color: white;
+    border: none;
+    border: 1px solid #e91e63; /* ボーダーを追加 */
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s; /* カーソルに合わせて色が変わるように */
+    display: block; /* ブロック要素にして、中央揃えにするため */
+    margin: 20px auto 0; /* 上マージン20px、下マージンなし、左右中央揃え */
+}
+
+input[type="submit"]:hover {
+    background-color: #fce4ec; 
+    color: #c2185b;
+    border-color: #c2185b; 
+}
+
+</style>
+</head>
+<body>
+
+<h1>楽曲操作システム★登録</h1>
+<p><a th:href="@{/function}">メニューに戻る</a></p>
+<form th:action="@{/confirm}" method="post">
+    <p>曲名　：<input type="text" name="song_name"><br>
+    歌手名：<input type="text" name="singer"></p>
+    <input type="submit" value="登録確認">
+</form>
+
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>一覧画面</title>
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #fce4ec; /* 淡いピンク */
+        text-align: center;
+        margin: 0;
+    }
+    
+    h1 {
+        margin: 5px 10px 30px 10px;
+        padding: 1rem 2rem;
+        color: #fff;
+        background: #e91e63;
+        background-image: radial-gradient(circle, #fff 3%, transparent 7%), radial-gradient(circle, #fff 3%, transparent 7%);
+        background-position: 0 0, 25px 25px;
+        background-size: 50px 50px;
+        box-shadow: 6px 6px 0 #f8bbd0;
+    }
+        
+    table {
+        width: 85%;
+        margin: 30px auto;
+        border: none;
+        }
+        
+    th, td {
+        padding: 15px;
+        text-align: center;
+        border: 1px solid #e91e63;
+        border-radius: 20px; /* 角 */
+        overflow: hidden;
+        background-color: #fff;
+        
+    }
+    
+    th {
+        background-color: #e91e63; /* ピンク */
+        color: white;
+    }
+    
+    tr {
+        padding: 20px 0; /* 行間の幅を広げる */
+    }
+     
+    tr:hover {
+        background-color: #f48fb1; /* カーソルに合わせて少し明るく */
+    }
+    
+    a {
+        color: #e91e63; /* ピンク */
+        text-decoration: none;
+        transition: color 0.3s; /* カーソルに合わせて色が変わるように */
+        font-size: 1.2rem; 
+        display: inline-block; /* 要素の大きさを設定するために必要 */
+    }
+    
+    a:hover {
+        color: #c2185b; /* 暗いピンク */
+        font-weight: bold; /* 太字にすることで強調 */
+    }
+    
+</style>
+</head>
+<body>
+
+<h1>楽曲★一覧</h1>
+<p><a th:href="@{/function}">メニューに戻る</a></p>
+<table border="1">
+    <tr>
+        <th>曲番号</th>
+        <th>曲名</th>
+        <th>歌手名</th>
+    </tr>
+    <tr th:each="name : ${list}">
+        <td th:text="${name.song_id}"></td>
+        <td th:text="${name.song_name}"></td>
+        <td th:text="${name.singer}"></td>
+    </tr>
+</table>
+
+</body>
+</html>
